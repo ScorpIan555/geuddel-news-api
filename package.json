@@ -1,0 +1,28 @@
+{
+  "name": "api-geuddel-news",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "aws-sdk": "^2.488.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-source-map-support": "^2.0.1",
+    "serverless-offline": "^5.7.1",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.35.2",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.5.1",
+    "source-map-support": "^0.5.12",
+    "uuid": "^3.3.2"
+  }
+}

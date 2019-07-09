@@ -1,0 +1,13 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Misc files (developer notes-to-self)
+npm_install_scripts
+service_information  
+
+# environmental files
+.env.yml
