@@ -140,11 +140,11 @@ functions:
           cors: true
           authorizer: aws_iam
   
-  getNews:
+  getNewsapi:
     handler: getNews.main
     events:
       - http:
-          path: getNews/{query}
+          path: getNewsapi/{query}
           method: get
           cors: true
           authorizer: aws_iam
