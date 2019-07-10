@@ -1,0 +1,12 @@
+{
+    "pathParameters": {
+        "apiKey": "4241ab4846a24b608a14e933dc323eb1",
+        "country": "us"
+      },
+    "requestContext": {
+      "identity": {
+        "cognitoIdentityId": "USER-SUB-1234"
+      }
+    }
+  }
+  

@@ -33,7 +33,7 @@ provider:
   stage: dev
   region: us-east-1
   # These environment variables are made available to our functions
-  # under process.env.
+  # under process.env
   environment:
     tableName: ${self:custom.tableName}
 
@@ -138,7 +138,24 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+  
+  getNews:
+    handler: getNews.main
+    events:
+      - http:
+          path: getNews/{query}
+          method: get
+          cors: true
+          authorizer: aws_iam
 
+  getPublicIp:
+    handler: getPublicIp.main
+    events:
+      - http:
+          path: getPublicIp/{query}
+          method: get
+          cors: true
+          authorizer: aws_iam
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

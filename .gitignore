@@ -7,7 +7,8 @@ jspm_packages
 
 # Misc files (developer notes-to-self)
 npm_install_scripts
-service_information  
+service_information
+curls
 
 # environmental files
 .env.yml
