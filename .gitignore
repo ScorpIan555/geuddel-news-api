@@ -11,4 +11,5 @@ service_information
 curls
 
 # environmental files
-.env.yml
+.env
+env.yml

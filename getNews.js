@@ -1,7 +1,7 @@
 import { failure, success } from './libs/response-lib';
 
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('4241ab4846a24b608a14e933dc323eb1');
+const newsapi = new NewsAPI(process.env.newsApiKey);
 
 // To query /v2/top-headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
