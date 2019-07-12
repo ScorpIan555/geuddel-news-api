@@ -6,9 +6,11 @@ jspm_packages
 .serverless
 
 # Misc files (developer notes-to-self)
-npm_install_scripts
-service_information
 curls
+npm_install_scripts
+service_information_dev
+service_information_prod
+stage_test
 
 # environmental files
 .env

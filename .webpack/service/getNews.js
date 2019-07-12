@@ -90,10 +90,163 @@
 /*!********************!*\
   !*** ./getNews.js ***!
   \********************/
+/*! exports provided: main */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "@babel/runtime/helpers/asyncToGenerator");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
+
+
+
+
+
+var NewsAPI = __webpack_require__(/*! newsapi */ "newsapi");
+
+var newsapi = new NewsAPI(process.env.newsApiKey); // To query /v2/top-headlines
+// All options passed to topHeadlines are optional, but you need to include at least one of them
+// receive POST from client and make GET call from back-end to 3rd party api
+// return result to client side's redux cycle
+
+function main(_x, _x2) {
+  return _main.apply(this, arguments);
+}
+
+function _main() {
+  _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
+    var queryData, sources, q, category, language, country, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            // 
+            queryData = JSON.parse(event.body);
+            sources = queryData.sources, q = queryData.q, category = queryData.category, language = queryData.language, country = queryData.country;
+            _context.prev = 2;
+            _context.next = 5;
+            return newsapi.v2.topHeadlines({
+              // sources: 'bbc-news,the-verge',
+              // q: 'bitcoin',
+              // category: 'business',
+              // language: 'en',
+              // country: 'us'
+              sources: sources,
+              q: q,
+              category: category,
+              language: language,
+              country: country
+            });
+
+          case 5:
+            response = _context.sent;
+            console.log('response', response);
+            _context.next = 13;
+            break;
+
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](2);
+            console.log("ERROR:::", _context.t0);
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_3__["failure"])({
+              message: _context.t0.message
+            }));
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[2, 9]]);
+  }));
+  return _main.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./libs/response-lib.js":
+/*!******************************!*\
+  !*** ./libs/response-lib.js ***!
+  \******************************/
+/*! exports provided: success, failure */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "success", function() { return success; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "failure", function() { return failure; });
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_0__);
+
+function success(body) {
+  return buildResponse(200, body);
+}
+function failure(body) {
+  return buildResponse(500, body);
+}
+
+function buildResponse(statusCode, body) {
+  return {
+    statusCode: statusCode,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true
+    },
+    body: JSON.stringify(body)
+  };
+}
+
+/***/ }),
+
+/***/ "@babel/runtime/helpers/asyncToGenerator":
+/*!**********************************************************!*\
+  !*** external "@babel/runtime/helpers/asyncToGenerator" ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/getNews.js: Unexpected token (1:13)\n\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 1 | \u001b[39m\u001b[36mimport\u001b[39m dotenv\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[36mimport\u001b[39m { failure\u001b[33m,\u001b[39m success } from \u001b[32m'./libs/response-lib'\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m\u001b[36mconst\u001b[39m \u001b[33mNewsAPI\u001b[39m \u001b[33m=\u001b[39m require(\u001b[32m'newsapi'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n    at Parser.raise (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:6325:17)\n    at Parser.unexpected (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:7642:16)\n    at Parser.expectContextual (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:7608:41)\n    at Parser.parseImport (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:11168:12)\n    at Parser.parseStatementContent (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:9927:27)\n    at Parser.parseStatement (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:9829:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:10405:25)\n    at Parser.parseBlockBody (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:10392:10)\n    at Parser.parseTopLevel (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:9758:10)\n    at Parser.parse (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:11270:17)\n    at parse (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/parser/lib/index.js:11306:38)\n    at parser (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at process.nextTick (/home/vandaley80/PROJECTS/geuddel-news/api-geuddel-news/node_modules/@babel/core/lib/transform.js:34:34)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
+module.exports = require("@babel/runtime/helpers/asyncToGenerator");
+
+/***/ }),
+
+/***/ "@babel/runtime/regenerator":
+/*!*********************************************!*\
+  !*** external "@babel/runtime/regenerator" ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@babel/runtime/regenerator");
+
+/***/ }),
+
+/***/ "newsapi":
+/*!**************************!*\
+  !*** external "newsapi" ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("newsapi");
+
+/***/ }),
+
+/***/ "source-map-support/register":
+/*!**********************************************!*\
+  !*** external "source-map-support/register" ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("source-map-support/register");
 
 /***/ })
 

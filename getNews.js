@@ -9,6 +9,7 @@ const newsapi = new NewsAPI(process.env.newsApiKey);
 // receive POST from client and make GET call from back-end to 3rd party api
 // return result to client side's redux cycle
 export async function main(event, context) {
+    // 
     const queryData = JSON.parse(event.body);
     const { sources, q, category, language, country } = queryData;
     
