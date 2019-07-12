@@ -1,7 +1,7 @@
 import { failure, success } from './libs/response-lib';
-
+import NewsAPI from 'newsapi';
+// initialize and configure Newsapi instance
 const newsApiKey = require(process.env.newsApiKey);
-const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI(newsApiKey);
 
 // To query /v2/top-headlines
@@ -10,10 +10,10 @@ const newsapi = new NewsAPI(newsApiKey);
 // receive POST from client and make GET call from back-end to 3rd party api
 // return result to client side's redux cycle
 export async function main(event, context) {
-    // 
+    // parse and store object sent from client
     const queryData = JSON.parse(event.body);
     const { sources, q, category, language, country } = queryData;
-    
+    // make asynchronous api call to Newsapi.org for headlines
     try {
        const response = await newsapi.v2.topHeadlines({
             // sources: 'bbc-news,the-verge',
@@ -27,9 +27,11 @@ export async function main(event, context) {
             language: language,
             country: country
           });
+        // logging output during development
         console.log('response', response);
           
     } catch (e) {
+        // logging output during development
         console.log("ERROR:::", e);
         return failure({ message: e.message});
     }
