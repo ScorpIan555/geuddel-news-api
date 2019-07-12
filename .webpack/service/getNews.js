@@ -103,14 +103,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
+/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! newsapi */ "newsapi");
+/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(newsapi__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
+ // initialize and configure Newsapi instance
 
-var NewsAPI = __webpack_require__(/*! newsapi */ "newsapi");
-
-var newsapi = new NewsAPI(process.env.newsApiKey); // To query /v2/top-headlines
+var newsApiKey = process.env.newsApiKey;
+var newsapi = new newsapi__WEBPACK_IMPORTED_MODULE_4___default.a(newsApiKey); // To query /v2/top-headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
 // receive POST from client and make GET call from back-end to 3rd party api
 // return result to client side's redux cycle
@@ -128,9 +130,10 @@ function _main() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            // 
+            // parse and store object sent from client
             queryData = JSON.parse(event.body);
-            sources = queryData.sources, q = queryData.q, category = queryData.category, language = queryData.language, country = queryData.country;
+            sources = queryData.sources, q = queryData.q, category = queryData.category, language = queryData.language, country = queryData.country; // make asynchronous api call to Newsapi.org for headlines
+
             _context.prev = 2;
             _context.next = 5;
             return newsapi.v2.topHeadlines({
@@ -148,6 +151,7 @@ function _main() {
 
           case 5:
             response = _context.sent;
+            // logging output during development
             console.log('response', response);
             _context.next = 13;
             break;
@@ -155,6 +159,7 @@ function _main() {
           case 9:
             _context.prev = 9;
             _context.t0 = _context["catch"](2);
+            // logging output during development
             console.log("ERROR:::", _context.t0);
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_3__["failure"])({
               message: _context.t0.message
