@@ -98,13 +98,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "@babel/runtime/helpers/asyncToGenerator");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
-/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! newsapi */ "newsapi");
-/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(newsapi__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_readOnlyError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/readOnlyError */ "@babel/runtime/helpers/readOnlyError");
+/* harmony import */ var _babel_runtime_helpers_readOnlyError__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_readOnlyError__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "@babel/runtime/helpers/asyncToGenerator");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
+/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! newsapi */ "newsapi");
+/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(newsapi__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -112,7 +115,7 @@ __webpack_require__.r(__webpack_exports__);
  // initialize and configure Newsapi instance
 
 var newsApiKey = process.env.newsApiKey;
-var newsapi = new newsapi__WEBPACK_IMPORTED_MODULE_4___default.a(newsApiKey); // To query /v2/top-headlines
+var newsapi = new newsapi__WEBPACK_IMPORTED_MODULE_5___default.a(newsApiKey); // To query /v2/top-headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
 // receive POST from client and make GET call from back-end to 3rd party api
 // return result to client side's redux cycle
@@ -122,7 +125,7 @@ function main(_x, _x2) {
 }
 
 function _main() {
-  _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+  _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
   /*#__PURE__*/
   _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
     var queryData, sources, q, category, language, country, response;
@@ -135,7 +138,8 @@ function _main() {
             sources = queryData.sources, q = queryData.q, category = queryData.category, language = queryData.language, country = queryData.country; // make asynchronous api call to Newsapi.org for headlines
 
             _context.prev = 2;
-            _context.next = 5;
+            q = (_babel_runtime_helpers_readOnlyError__WEBPACK_IMPORTED_MODULE_1___default()("q"), 'brexit');
+            _context.next = 6;
             return newsapi.v2.topHeadlines({
               // sources: 'bbc-news,the-verge',
               // q: 'bitcoin',
@@ -149,28 +153,28 @@ function _main() {
               country: country
             });
 
-          case 5:
+          case 6:
             response = _context.sent;
             // logging output during development
             console.log('response', response);
-            _context.next = 13;
+            _context.next = 14;
             break;
 
-          case 9:
-            _context.prev = 9;
+          case 10:
+            _context.prev = 10;
             _context.t0 = _context["catch"](2);
             // logging output during development
             console.log("ERROR:::", _context.t0);
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_3__["failure"])({
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
               message: _context.t0.message
             }));
 
-          case 13:
+          case 14:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[2, 9]]);
+    }, _callee, null, [[2, 10]]);
   }));
   return _main.apply(this, arguments);
 }
@@ -219,6 +223,17 @@ function buildResponse(statusCode, body) {
 /***/ (function(module, exports) {
 
 module.exports = require("@babel/runtime/helpers/asyncToGenerator");
+
+/***/ }),
+
+/***/ "@babel/runtime/helpers/readOnlyError":
+/*!*******************************************************!*\
+  !*** external "@babel/runtime/helpers/readOnlyError" ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@babel/runtime/helpers/readOnlyError");
 
 /***/ }),
 

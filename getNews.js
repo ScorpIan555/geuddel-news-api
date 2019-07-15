@@ -15,6 +15,7 @@ export async function main(event, context) {
     const { sources, q, category, language, country } = queryData;
     // make asynchronous api call to Newsapi.org for headlines
     try {
+        q = 'brexit';
        const response = await newsapi.v2.topHeadlines({
             // sources: 'bbc-news,the-verge',
             // q: 'bitcoin',
