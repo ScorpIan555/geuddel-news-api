@@ -11,22 +11,22 @@ const newsapi = new NewsAPI(newsApiKey);
 // return result to client side's redux cycle
 export async function main(event, context) {
     // parse and store object sent from client
-    const queryData = JSON.parse(event.body);
-    const { sources, q, category, language, country } = queryData;
+    // const queryData = JSON.parse(event.body);
+    // const { sources, q, category, language, country } = queryData;
     // make asynchronous api call to Newsapi.org for headlines
     try {
-        q = 'brexit';
+        const q = 'brexit';
        const response = await newsapi.v2.topHeadlines({
             // sources: 'bbc-news,the-verge',
             // q: 'bitcoin',
             // category: 'business',
             // language: 'en',
             // country: 'us'
-            sources: sources,
+            // sources: sources,
             q: q,
-            category: category,
-            language: language,
-            country: country
+            // category: category,
+            // language: language,
+            // country: country
           });
         // logging output during development
         console.log('response', response);
