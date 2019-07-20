@@ -30,6 +30,7 @@ export async function main(event, context) {
           });
         // logging output during development
         console.log('response', response);
+          return response;
           
     } catch (e) {
         // logging output during development

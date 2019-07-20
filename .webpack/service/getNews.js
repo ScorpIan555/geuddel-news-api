@@ -150,11 +150,10 @@ function _main() {
             response = _context.sent;
             // logging output during development
             console.log('response', response);
-            _context.next = 12;
-            break;
+            return _context.abrupt("return", response);
 
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             // logging output during development
             console.log("ERROR:::", _context.t0);
@@ -162,12 +161,12 @@ function _main() {
               message: _context.t0.message
             }));
 
-          case 12:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 9]]);
   }));
   return _main.apply(this, arguments);
 }
