@@ -9,14 +9,14 @@ const newsapi = new NewsAPI(newsApiKey);
 
 // receive POST from client and make GET call from back-end to 3rd party api
 // return result to client side's redux cycle
-export async function main(event, context) {
+export function main(event, context) {
     // parse and store object sent from client
     // const queryData = JSON.parse(event.body);
     // const { sources, q, category, language, country } = queryData;
     // make asynchronous api call to Newsapi.org for headlines
-    try {
+    
       const q = 'brexit';
-      await newsapi.v2.topHeadlines({
+      newsapi.v2.topHeadlines({
         // sources: 'bbc-news,the-verge',
         // q: 'bitcoin',
         // category: 'business',
@@ -27,15 +27,17 @@ export async function main(event, context) {
         // category: category,
         // language: language,
         // country: country
-      });
-    // logging output during development
-        console.log("news api call result :::")
-        return success({ status: true })
-    } catch (e) {
-        // logging output during development
-        console.log("ERROR:::", e);
-        return failure({ message: e.message});
-    }
+      })
+      .then(res => {
+        console.log('NEWS!!!::::', res);
+        return res;
+      })
+      .catch(err => {
+        console.log('ERROR:::', err);
+      })
+    // // logging output during development
+    //     console.log("news api call result :::")
+    //     return success({ status: true });
   
 
 }
