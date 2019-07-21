@@ -32,7 +32,7 @@ export function main(event, context) {
       })
       .then(res => {
         console.log('res:::', res);
-        return success({ status: true, data: res });
+        return success({ status: true });
       })
       .catch(e => {
         console.log("ERROR:::", e);

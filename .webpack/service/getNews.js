@@ -134,7 +134,6 @@ function main(event, context) {
   }).then(function (res) {
     console.log('res:::', res);
     return Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
-      status: true,
       data: res
     });
   })["catch"](function (e) {
