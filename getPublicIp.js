@@ -8,11 +8,13 @@ export async function main(event, context) {
 
     try {
        const userLocation = await axios.get('http://ip-api.com/json');
-       console.log('ipResponse:::', userLocation);
 
-       return success({status: true, data: userLocation});
+       console.log('ipResponse:::', userLocation);
+    //    return success({ status: true, data: userLocation });
+    // userLocation;
           
     } catch(e) {
         console.log('try/catch async Error', e);
+        return failure({ message: e.message });
     }
 }
