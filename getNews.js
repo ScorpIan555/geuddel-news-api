@@ -28,7 +28,7 @@ export async function main(event, context) {
     });
   // logging output during development
       console.log("news api call result :::", news);
-      return success({ status: true, news: news });
+      return success({ status: true, data: news });
   } catch (e) {
       // logging output during development
       console.log("ERROR:::", e);

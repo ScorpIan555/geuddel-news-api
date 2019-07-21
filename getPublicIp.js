@@ -9,11 +9,13 @@ export async function main(event, context) {
     try {
         const response = await axios.get('http://ip-api.com/json');
 
-        console.log('ipResponse:::', response);
-        console.log('ipResponse.data:::', response.data);
+        // console.log('ipResponse:::', response);
+        // console.log('ipResponse.data:::', response.data);
+        // console.log('ipResponse.data:::', typeof(response.data));
         //    return success({ status: true, data: userLocation });
         const userLocation = response.data;
             
+        // console.log('success({ status: true, data: userLocation }):::', success({ status: true, data: userLocation }));
         return success({ status: true, data: userLocation });
 
     } catch(e) {

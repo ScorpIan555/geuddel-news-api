@@ -131,29 +131,31 @@ function _main() {
 
           case 3:
             response = _context.sent;
-            console.log('ipResponse:::', response);
-            console.log('ipResponse.data:::', response.data); //    return success({ status: true, data: userLocation });
+            // console.log('ipResponse:::', response);
+            // console.log('ipResponse.data:::', response.data);
+            // console.log('ipResponse.data:::', typeof(response.data));
+            //    return success({ status: true, data: userLocation });
+            userLocation = response.data; // console.log('success({ status: true, data: userLocation }):::', success({ status: true, data: userLocation }));
 
-            userLocation = response.data;
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_3__["success"])({
               status: true,
               data: userLocation
             }));
 
-          case 10:
-            _context.prev = 10;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             console.log('try/catch async Error', _context.t0);
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_3__["failure"])({
               message: _context.t0.message
             }));
 
-          case 14:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 8]]);
   }));
   return _main.apply(this, arguments);
 }
