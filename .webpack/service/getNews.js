@@ -96,62 +96,118 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _libs_json_response_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/json-response-lib */ "./libs/json-response-lib.js");
-/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! newsapi */ "newsapi");
-/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(newsapi__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "@babel/runtime/helpers/asyncToGenerator");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _libs_json_response_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/json-response-lib */ "./libs/json-response-lib.js");
+/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! newsapi */ "newsapi");
+/* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(newsapi__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
  // initialize and configure Newsapi instance
 
 var newsApiKey = process.env.newsApiKey;
-var newsapi = new newsapi__WEBPACK_IMPORTED_MODULE_2___default.a(newsApiKey); // To query /v2/top-headlines
+var newsapi = new newsapi__WEBPACK_IMPORTED_MODULE_4___default.a(newsApiKey); // To query /v2/top-headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
-// receive POST from client and make GET call from back-end to 3rd party api
-// return result to client side's redux cycle
 
-function main(event, context) {
-  console.log('event:::', event);
-  console.log('context:::', context); // parse and store object sent from client
-  // const queryData = JSON.parse(event.body);
-  // const { sources, q, category, language, country } = queryData;
-  // make asynchronous api call to Newsapi.org for headlines
-  // try {
+function main(_x, _x2) {
+  return _main.apply(this, arguments);
+} // // receive POST from client and make GET call from back-end to 3rd party api
+// // return result to client side's redux cycle
+// export function main(event, context) {
+//   console.log('event:::', event);
+//   console.log('context:::', context);
+//     // parse and store object sent from client
+//     // const queryData = JSON.parse(event.body);
+//     // const { sources, q, category, language, country } = queryData;
+//     // make asynchronous api call to Newsapi.org for headlines
+//     // try {
+//       const q = '';
+//       newsapi.v2.topHeadlines({
+//         // sources: 'bbc-news,the-verge',
+//         // q: 'bitcoin',
+//         // category: 'business',
+//         language: 'es',
+//         // country: 'us'
+//         // sources: sources,
+//         // q: q,
+//         // category: category,
+//         // language: language,
+//         // country: country
+//       })
+//       .then(res => {
+//         var res = res
+//         console.log('res:::', success({ status: true, res: res }));
+//         return success({ status: true, res: res });
+//       })
+//       .catch(e => {
+//         console.log("ERROR:::", e);
+//         return failure({ message: e.message });
+//       })
+//     // } catch (e) {
+//         // logging output during development
+//         // console.log("ERROR:::", e);
+//         // return failure({ message: e.message });
+//     // }
+//     // return success({ status: true });
+// }
 
-  var q = '';
-  newsapi.v2.topHeadlines({
-    // sources: 'bbc-news,the-verge',
-    // q: 'bitcoin',
-    // category: 'business',
-    language: 'es' // country: 'us'
-    // sources: sources,
-    // q: q,
-    // category: category,
-    // language: language,
-    // country: country
+function _main() {
+  _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
+    var q, news;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            q = 'brexit';
+            _context.next = 4;
+            return newsapi.v2.topHeadlines({
+              // sources: 'bbc-news,the-verge',
+              // q: 'bitcoin',
+              // category: 'business',
+              // language: 'en',
+              // country: 'us'
+              // sources: sources,
+              q: q // category: category,
+              // language: language,
+              // country: country
 
-  }).then(function (res) {
-    var res = res;
-    console.log('res:::', Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
-      status: true,
-      res: res
-    }));
-    return Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
-      status: true,
-      res: res
-    });
-  })["catch"](function (e) {
-    console.log("ERROR:::", e);
-    return Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_1__["failure"])({
-      message: e.message
-    });
-  }); // } catch (e) {
-  // logging output during development
-  // console.log("ERROR:::", e);
-  // return failure({ message: e.message });
-  // }
-  // return success({ status: true });
+            });
+
+          case 4:
+            news = _context.sent;
+            // logging output during development
+            console.log("news api call result :::", news);
+            return _context.abrupt("return", Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_3__["success"])({
+              status: true,
+              news: news
+            }));
+
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
+            // logging output during development
+            console.log("ERROR:::", _context.t0);
+            return _context.abrupt("return", Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_3__["failure"])({
+              message: _context.t0.message
+            }));
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 9]]);
+  }));
+  return _main.apply(this, arguments);
 }
 
 /***/ }),
@@ -187,6 +243,28 @@ function buildResponse(statusCode, body) {
     body: body
   };
 }
+
+/***/ }),
+
+/***/ "@babel/runtime/helpers/asyncToGenerator":
+/*!**********************************************************!*\
+  !*** external "@babel/runtime/helpers/asyncToGenerator" ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@babel/runtime/helpers/asyncToGenerator");
+
+/***/ }),
+
+/***/ "@babel/runtime/regenerator":
+/*!*********************************************!*\
+  !*** external "@babel/runtime/regenerator" ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@babel/runtime/regenerator");
 
 /***/ }),
 
