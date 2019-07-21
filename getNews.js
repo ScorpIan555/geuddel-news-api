@@ -10,6 +10,8 @@ const newsapi = new NewsAPI(newsApiKey);
 // receive POST from client and make GET call from back-end to 3rd party api
 // return result to client side's redux cycle
 export async function main(event, context) {
+  console.log('event:::', event);
+  console.log('context:::', context);
     // parse and store object sent from client
     // const queryData = JSON.parse(event.body);
     // const { sources, q, category, language, country } = queryData;
@@ -27,10 +29,13 @@ export async function main(event, context) {
         // category: category,
         // language: language,
         // country: country
-      });
+      })
+      .then(res => {
+        console.log('res:::', res);
+      })
     // logging output during development
         console.log("news api call result :::")
-        return success({ status: true });
+        return success({ status: true }, {event: event, context: context});
     } catch (e) {
         // logging output during development
         console.log("ERROR:::", e);
