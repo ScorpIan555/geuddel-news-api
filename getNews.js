@@ -15,23 +15,22 @@ export async function main(event, context) {
     // const { sources, q, category, language, country } = queryData;
     // make asynchronous api call to Newsapi.org for headlines
     try {
-        const q = 'brexit';
-       const response = await newsapi.v2.topHeadlines({
-            // sources: 'bbc-news,the-verge',
-            // q: 'bitcoin',
-            // category: 'business',
-            // language: 'en',
-            // country: 'us'
-            // sources: sources,
-            q: q,
-            // category: category,
-            // language: language,
-            // country: country
-          });
-        // logging output during development
-        console.log('response', response);
-          return response;
-          
+      const q = 'brexit';
+      await newsapi.v2.topHeadlines({
+        // sources: 'bbc-news,the-verge',
+        // q: 'bitcoin',
+        // category: 'business',
+        // language: 'en',
+        // country: 'us'
+        // sources: sources,
+        q: q,
+        // category: category,
+        // language: language,
+        // country: country
+      });
+    // logging output during development
+        console.log("news api call result :::")
+        return success({ status: true })
     } catch (e) {
         // logging output during development
         console.log("ERROR:::", e);

@@ -154,7 +154,7 @@ functions:
     events:
       - http:
           path: getNews
-          method: any
+          method: get
           cors: true
           authorizer: aws_iam
 
