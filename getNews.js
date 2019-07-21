@@ -31,6 +31,8 @@ export function main(event, context) {
         // country: country
       })
       .then(res => {
+        var res = res
+        
         console.log('res:::', res);
         return success({ status: true });
       })
@@ -44,6 +46,6 @@ export function main(event, context) {
         // console.log("ERROR:::", e);
         // return failure({ message: e.message });
     // }
-  
-
+    return success({ status: true });
+   
 }

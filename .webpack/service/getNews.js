@@ -132,9 +132,10 @@ function main(event, context) {
     // country: country
 
   }).then(function (res) {
+    var res = res;
     console.log('res:::', res);
     return Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
-      data: res
+      status: true
     });
   })["catch"](function (e) {
     console.log("ERROR:::", e);
@@ -146,6 +147,10 @@ function main(event, context) {
   // console.log("ERROR:::", e);
   // return failure({ message: e.message });
   // }
+
+  return Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
+    status: true
+  });
 }
 
 /***/ }),
