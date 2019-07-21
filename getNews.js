@@ -1,4 +1,4 @@
-import { failure, success } from './libs/json-response-lib';
+import { failure, success } from './libs/response-lib';
 import NewsAPI from 'newsapi';
 // initialize and configure Newsapi instance
 const newsApiKey = process.env.newsApiKey;
