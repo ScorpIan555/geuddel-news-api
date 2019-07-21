@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
+/* harmony import */ var _libs_json_response_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/json-response-lib */ "./libs/json-response-lib.js");
 /* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! newsapi */ "newsapi");
 /* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(newsapi__WEBPACK_IMPORTED_MODULE_2__);
 
@@ -119,27 +119,31 @@ function main(event, context) {
   // make asynchronous api call to Newsapi.org for headlines
   // try {
 
-  var q = 'brexit';
+  var q = '';
   newsapi.v2.topHeadlines({
     // sources: 'bbc-news,the-verge',
     // q: 'bitcoin',
     // category: 'business',
-    // language: 'en',
-    // country: 'us'
+    language: 'es' // country: 'us'
     // sources: sources,
-    q: q // category: category,
+    // q: q,
+    // category: category,
     // language: language,
     // country: country
 
   }).then(function (res) {
     var res = res;
-    console.log('res:::', res);
-    return Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
-      status: true
+    console.log('res:::', Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
+      status: true,
+      res: res
+    }));
+    return Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
+      status: true,
+      res: res
     });
   })["catch"](function (e) {
     console.log("ERROR:::", e);
-    return Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_1__["failure"])({
+    return Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_1__["failure"])({
       message: e.message
     });
   }); // } catch (e) {
@@ -147,18 +151,15 @@ function main(event, context) {
   // console.log("ERROR:::", e);
   // return failure({ message: e.message });
   // }
-
-  return Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
-    status: true
-  });
+  // return success({ status: true });
 }
 
 /***/ }),
 
-/***/ "./libs/response-lib.js":
-/*!******************************!*\
-  !*** ./libs/response-lib.js ***!
-  \******************************/
+/***/ "./libs/json-response-lib.js":
+/*!***********************************!*\
+  !*** ./libs/json-response-lib.js ***!
+  \***********************************/
 /*! exports provided: success, failure */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -183,7 +184,7 @@ function buildResponse(statusCode, body) {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true
     },
-    body: JSON.stringify(body)
+    body: body
   };
 }
 

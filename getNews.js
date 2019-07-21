@@ -1,4 +1,4 @@
-import { failure, success } from './libs/response-lib';
+import { failure, success } from './libs/json-response-lib';
 import NewsAPI from 'newsapi';
 // initialize and configure Newsapi instance
 const newsApiKey = process.env.newsApiKey;
@@ -17,15 +17,15 @@ export function main(event, context) {
     // const { sources, q, category, language, country } = queryData;
     // make asynchronous api call to Newsapi.org for headlines
     // try {
-      const q = 'brexit';
+      const q = '';
       newsapi.v2.topHeadlines({
         // sources: 'bbc-news,the-verge',
         // q: 'bitcoin',
         // category: 'business',
-        // language: 'en',
+        language: 'es',
         // country: 'us'
         // sources: sources,
-        q: q,
+        // q: q,
         // category: category,
         // language: language,
         // country: country
@@ -33,8 +33,8 @@ export function main(event, context) {
       .then(res => {
         var res = res
         
-        console.log('res:::', res);
-        return success({ status: true });
+        console.log('res:::', success({ status: true, res: res }));
+        return success({ status: true, res: res });
       })
       .catch(e => {
         console.log("ERROR:::", e);
@@ -46,6 +46,6 @@ export function main(event, context) {
         // console.log("ERROR:::", e);
         // return failure({ message: e.message });
     // }
-    return success({ status: true });
+    // return success({ status: true });
    
 }
