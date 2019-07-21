@@ -112,10 +112,13 @@ var newsapi = new newsapi__WEBPACK_IMPORTED_MODULE_2___default.a(newsApiKey); //
 // return result to client side's redux cycle
 
 function main(event, context) {
-  // parse and store object sent from client
+  console.log('event:::', event);
+  console.log('context:::', context); // parse and store object sent from client
   // const queryData = JSON.parse(event.body);
   // const { sources, q, category, language, country } = queryData;
   // make asynchronous api call to Newsapi.org for headlines
+  // try {
+
   var q = 'brexit';
   newsapi.v2.topHeadlines({
     // sources: 'bbc-news,the-verge',
@@ -129,13 +132,21 @@ function main(event, context) {
     // country: country
 
   }).then(function (res) {
-    console.log('NEWS!!!::::', res);
-    return res;
-  })["catch"](function (err) {
-    console.log('ERROR:::', err);
-  }); // // logging output during development
-  //     console.log("news api call result :::")
-  //     return success({ status: true });
+    console.log('res:::', res);
+    return Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_1__["success"])({
+      status: true,
+      data: res
+    });
+  })["catch"](function (e) {
+    console.log("ERROR:::", e);
+    return Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_1__["failure"])({
+      message: e.message
+    });
+  }); // } catch (e) {
+  // logging output during development
+  // console.log("ERROR:::", e);
+  // return failure({ message: e.message });
+  // }
 }
 
 /***/ }),
