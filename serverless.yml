@@ -2,6 +2,9 @@ service: geuddel-news-api
 #app: your-app-name
 #tenant: your-tenant-name
 
+# @TODO need to check package option to see if I still need to package each Lambda individually
+# ref: https://serverless-stack.com/chapters/add-support-for-es6-es7-javascript.html
+
 # app plugins to transpile ES6/ES7
 plugins:
   - serverless-webpack
