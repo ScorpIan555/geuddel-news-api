@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _libs_json_response_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/json-response-lib */ "./libs/json-response-lib.js");
+/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
 /* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! newsapi */ "newsapi");
 /* harmony import */ var newsapi__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(newsapi__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -186,7 +186,7 @@ function _main() {
             news = _context.sent;
             // logging output during development
             console.log("news api call result :::", news);
-            return _context.abrupt("return", Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_3__["success"])({
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_3__["success"])({
               status: true,
               news: news
             }));
@@ -196,7 +196,7 @@ function _main() {
             _context.t0 = _context["catch"](0);
             // logging output during development
             console.log("ERROR:::", _context.t0);
-            return _context.abrupt("return", Object(_libs_json_response_lib__WEBPACK_IMPORTED_MODULE_3__["failure"])({
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_3__["failure"])({
               message: _context.t0.message
             }));
 
@@ -212,10 +212,10 @@ function _main() {
 
 /***/ }),
 
-/***/ "./libs/json-response-lib.js":
-/*!***********************************!*\
-  !*** ./libs/json-response-lib.js ***!
-  \***********************************/
+/***/ "./libs/response-lib.js":
+/*!******************************!*\
+  !*** ./libs/response-lib.js ***!
+  \******************************/
 /*! exports provided: success, failure */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -240,7 +240,7 @@ function buildResponse(statusCode, body) {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true
     },
-    body: body
+    body: JSON.stringify(body)
   };
 }
 
