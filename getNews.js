@@ -13,31 +13,35 @@ export async function main(event, context) {
   // parse and store object sent from client
   // const queryData = JSON.parse(event);
   const queryData = event.pathParameters;
-  const { sources, q, category, language, country } = queryData;
-  // make asynchronous api call to Newsapi.org for headlines
-  try {
-    
-    const news = await newsapi.v2.topHeadlines({
-      // sources: 'bbc-news,the-verge',
-      // q: 'bitcoin',
-      // category: 'business',
-      // language: 'en',
-      // country: 'us'
-      sources: sources,
-      q: q,
-      category: category,
-      language: language,
-      country: country
-    });
-  // logging output during development
-      console.log("news api call result :::", news);
-      return success({ status: true, data: news });
-  } catch (e) {
-      // logging output during development
-      console.log("ERROR:::", e);
-      return failure({ message: e.message});
-  }
 
+  if(queryData !== null) {
+    const { sources, q, category, language, country } = queryData;
+
+
+      // make asynchronous api call to Newsapi.org for headlines
+    try {
+      
+      const news = await newsapi.v2.topHeadlines({
+        // sources: 'bbc-news,the-verge',
+        // q: 'bitcoin',
+        // category: 'business',
+        // language: 'en',
+        // country: 'us'
+        sources: sources,
+        q: q,
+        category: category,
+        language: language,
+        country: country
+      });
+    // logging output during development
+        console.log("news api call result :::", news);
+        return success({ status: true, data: news });
+    } catch (e) {
+        // logging output during development
+        console.log("ERROR:::", e);
+        return failure({ message: e.message});
+    }
+  }
 
 }
 

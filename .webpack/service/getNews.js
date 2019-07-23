@@ -171,10 +171,16 @@ function _main() {
             // const queryData = JSON.parse(event);
 
             queryData = event.pathParameters;
+
+            if (!(queryData !== null)) {
+              _context.next = 17;
+              break;
+            }
+
             sources = queryData.sources, q = queryData.q, category = queryData.category, language = queryData.language, country = queryData.country; // make asynchronous api call to Newsapi.org for headlines
 
-            _context.prev = 4;
-            _context.next = 7;
+            _context.prev = 5;
+            _context.next = 8;
             return newsapi.v2.topHeadlines({
               // sources: 'bbc-news,the-verge',
               // q: 'bitcoin',
@@ -188,7 +194,7 @@ function _main() {
               country: country
             });
 
-          case 7:
+          case 8:
             news = _context.sent;
             // logging output during development
             console.log("news api call result :::", news);
@@ -197,21 +203,21 @@ function _main() {
               data: news
             }));
 
-          case 12:
-            _context.prev = 12;
-            _context.t0 = _context["catch"](4);
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](5);
             // logging output during development
             console.log("ERROR:::", _context.t0);
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_3__["failure"])({
               message: _context.t0.message
             }));
 
-          case 16:
+          case 17:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[4, 12]]);
+    }, _callee, null, [[5, 13]]);
   }));
   return _main.apply(this, arguments);
 }
