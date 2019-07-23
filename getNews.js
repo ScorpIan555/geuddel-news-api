@@ -17,6 +17,8 @@ export async function main(event, context) {
   if(queryData !== null) {
     const { sources, q, category, language, country } = queryData;
 
+    console.log('queryData:::', queryData);
+
 
       // make asynchronous api call to Newsapi.org for headlines
     try {
