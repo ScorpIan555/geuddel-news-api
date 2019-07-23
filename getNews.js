@@ -12,12 +12,14 @@ export async function main(event, context) {
   console.log('context:::', context);
   // parse and store object sent from client
   // const queryData = JSON.parse(event);
-  const queryData = event.pathParameters;
+  const queryData = event.queryStringParameters;
+  const queryPathData = event.pathParameters;
 
   if(queryData !== null) {
     const { sources, q, category, language, country } = queryData;
 
     console.log('queryData:::', queryData);
+    console.log('query path parameters', queryPathData);
 
 
       // make asynchronous api call to Newsapi.org for headlines
