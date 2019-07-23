@@ -1,8 +1,11 @@
 {
-    "pathParameters": {
+    "queryStringParameters": {
         "apiKey": "4241ab4846a24b608a14e933dc323eb1",
         "language": "es",
-        "country": "ar"
+        "country": "ar",
+        "q": "",
+        "category": "",
+        "sources": ""
       },
     "requestContext": {
       "identity": {
