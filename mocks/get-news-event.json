@@ -1,7 +1,8 @@
 {
     "pathParameters": {
         "apiKey": "4241ab4846a24b608a14e933dc323eb1",
-        "country": "us"
+        "language": "es",
+        "country": "ar"
       },
     "requestContext": {
       "identity": {
