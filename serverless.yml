@@ -39,7 +39,7 @@ provider:
   # under process.env
   environment:
     tableName: ${self:custom.tableName}
-    newsApiKey: ${self:custom.environment.newsApiKey}
+    newsApiKey: ${self:custom.environment.newsApiKeyAlt}
 
   iamRoleStatements:
     - Effect: Allow
