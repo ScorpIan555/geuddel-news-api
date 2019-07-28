@@ -111,7 +111,7 @@ __webpack_require__.r(__webpack_exports__);
 
  // initialize and configure Newsapi instance
 
-var newsApiKey = process.env.newsApiKey;
+var newsApiKey = process.env.newsApiKeyAlt;
 var newsapi = new newsapi__WEBPACK_IMPORTED_MODULE_4___default.a(newsApiKey); // To query /v2/top-headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
 
