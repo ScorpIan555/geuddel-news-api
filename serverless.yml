@@ -40,6 +40,7 @@ provider:
   environment:
     tableName: ${self:custom.tableName}
     newsApiKey: ${self:custom.environment.newsApiKey}
+    newsApiKeyAlt: ${self:custom.environment.newsApiKeyAlt}
 
   iamRoleStatements:
     - Effect: Allow
