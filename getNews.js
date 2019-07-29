@@ -1,7 +1,7 @@
 import { failure, success } from './libs/response-lib';
 import NewsAPI from 'newsapi';
 // initialize and configure Newsapi instance
-const newsApiKey = process.env.newsApiKeyAlt;
+const newsApiKey = process.env.newsApiKey;
 const newsapi = new NewsAPI(newsApiKey);
 
 // To query /v2/top-headlines
