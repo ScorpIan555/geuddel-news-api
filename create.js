@@ -6,14 +6,12 @@ export async function main(event, context) {
   console.log('event:::', event);
   console.log('event:::', event.body);
   console.log('event:::', context);
-  console.log('process.env.TableName', process.env.TableName)
-  console.log('process.env.TableName', process.env.tableName)
+  console.log('process.env.TableName', process.env.tableName);
 
 
   const data = JSON.parse(event.body);
   const params = {
     TableName: process.env.tableName,
-    // TableName: 'dev-gNewsNotes',
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       noteId: uuid.v1(),
