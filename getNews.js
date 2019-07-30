@@ -19,7 +19,6 @@ export async function main(event, context) {
 
     console.log('reqQuery:::', reqQuery);
     // console.log('query path parameters', queryPathData);
-
       // make asynchronous api call to Newsapi.org for headlines
     try {
       
