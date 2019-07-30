@@ -3,9 +3,17 @@ import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
+  console.log('event:::', event);
+  console.log('event:::', event.body);
+  console.log('event:::', context);
+  console.log('process.env.TableName', process.env.TableName)
+  console.log('process.env.TableName', process.env.tableName)
+
+
   const data = JSON.parse(event.body);
   const params = {
-    TableName: process.env.TableName,
+    TableName: process.env.tableName,
+    // TableName: 'dev-gNewsNotes',
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       noteId: uuid.v1(),
