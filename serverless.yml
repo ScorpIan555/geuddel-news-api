@@ -56,6 +56,7 @@ provider:
       # the specific table for the stage
       Resource:
         - "Fn::GetAtt": [ GNewsNotesTable, Arn ]
+        - "Fn::GetAtt": [ UserTable, Arn ]
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
