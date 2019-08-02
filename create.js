@@ -15,10 +15,10 @@ export async function main(event, context) {
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       noteId: uuid.v1(),
-      email: event.body.email,
-      language: event.body.language,
-      country: event.body.country,
-      category: event.body.category,
+      email: data.email,
+      language: data.language,
+      country: data.country,
+      category: data.category,
       content: data.content,
       attachment: data.attachment,
       createdAt: Date.now()
