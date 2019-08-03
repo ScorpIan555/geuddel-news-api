@@ -17,7 +17,9 @@ custom:
   # commands. Or fallsback to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
-  tableName: ${self:custom.stage}-gNewsNotes
+  notesTableName: ${self:custom.stage}-gNewsNotes
+  # Set the table name here so we can use it while testing locally
+  userTableName: ${self:custom.stage}-gNewsUser
   # Set our DynamoDB throughput for prod and all other non-prod stages.
   tableThroughputs:
     prod: 5
@@ -38,7 +40,8 @@ provider:
   # These environment variables are made available to our functions
   # under process.env
   environment:
-    tableName: ${self:custom.tableName}
+    notesTableName: ${self:custom.notesTableName}
+    userTableName: ${self:custom.userTableName}
     newsApiKey: ${self:custom.environment.newsApiKey}
     newsApiKeyAlt: ${self:custom.environment.newsApiKeyAlt}
 

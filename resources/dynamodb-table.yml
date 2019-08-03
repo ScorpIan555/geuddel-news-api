@@ -2,7 +2,7 @@ Resources:
   GNewsNotesTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.tableName}
+      TableName: ${self:custom.notesTableName}
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
@@ -22,7 +22,7 @@ Resources:
   UserTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.tableName}-User
+      TableName: ${self:custom.userTableName}
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
