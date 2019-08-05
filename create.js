@@ -23,12 +23,15 @@ export async function main(event, context) {
       category: data.category,
       content: data.content,
       attachment: data.attachment,
-      createdAt: Date()
+      createdAt: Date(),
+      updatedAt: Date()
     }
   };
 
   try {
     await dynamoDbLib.call("put", params);
+
+    console.log('params.Item:::', params.Item);
     return success(params.Item);
   } catch (e) {
     console.log('error!!!::: ', e);

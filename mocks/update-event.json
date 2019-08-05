@@ -1,5 +1,5 @@
 {
-    "body": "{\"content\":\"new world\",\"attachment\":\"new.jpg\"}",
+  "body": "{\"userId\":\"mock\",\"country\":\"mock-es\",\"noteId\":\"mock\",\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}",
     "pathParameters": {
       "id": "578eb840-f70f-11e6-9d1a-1359b3b22944"
     },

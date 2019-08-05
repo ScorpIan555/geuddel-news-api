@@ -1,5 +1,5 @@
 {
-    "body": "{\"userId\":\"mock\",\"noteId\":\"mock\",\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}",
+    "body": "{\"userId\":\"mock\",\"country\":\"mock\",\"noteId\":\"mock\",\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}",
     "requestContext": {      
       "identity": {
         "cognitoIdentityId": "USER-SUB-1234"
