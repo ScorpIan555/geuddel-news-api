@@ -2,6 +2,14 @@ import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
+
+  console.log('event:::', event);
+  console.log('event.requestContext:::', event.requestContext);
+  console.log('event.body:::', event.body);
+  console.log('context:::', context);
+  console.log('process.env.TableName', process.env.userTableName);
+
+
   const data = JSON.parse(event.body);
   const params = {
     TableName: process.env.userTableName,
