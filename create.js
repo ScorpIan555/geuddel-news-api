@@ -15,7 +15,7 @@ export async function main(event, context) {
     // TableName: "dev-gNewsUser",
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
-      noteId: uuid.v1(),
+      // noteId: uuid.v1(),
       email: data.email,
       language: data.language,
       country: data.country,
