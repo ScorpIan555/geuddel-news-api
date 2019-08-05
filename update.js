@@ -12,6 +12,17 @@ export async function main(event, context) {
       userId: event.requestContext.identity.cognitoIdentityId,
       noteId: event.pathParameters.id
     },
+    Item: {
+      userId: event.requestContext.identity.cognitoIdentityId,
+      noteId: data.noteId,
+      email: data.email,
+      language: data.language,
+      country: data.country,
+      category: data.category,
+      content: data.content,
+      attachment: data.attachment,
+      updatedAt: Date()
+    },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
     UpdateExpression: "SET content = :content, attachment = :attachment",

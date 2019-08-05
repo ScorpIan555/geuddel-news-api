@@ -8,8 +8,8 @@ export async function main(event, context) {
   console.log('event:::', context);
   console.log('process.env.TableName', process.env.userTableName);
 
-
   const data = JSON.parse(event.body);
+
   const params = {
     TableName: process.env.userTableName,
     // TableName: "dev-gNewsUser",
@@ -22,7 +22,7 @@ export async function main(event, context) {
       category: data.category,
       content: data.content,
       attachment: data.attachment,
-      createdAt: Date.now()
+      createdAt: Date()
     }
   };
 

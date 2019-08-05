@@ -128,10 +128,10 @@ function _main() {
             console.log('event:::', event);
             console.log('event:::', event.body);
             console.log('event:::', context);
-            console.log('process.env.TableName', process.env.tableName);
+            console.log('process.env.TableName', process.env.userTableName);
             data = JSON.parse(event.body);
             params = {
-              TableName: process.env.tableName,
+              TableName: process.env.userTableName,
               // TableName: "dev-gNewsUser",
               Item: {
                 userId: event.requestContext.identity.cognitoIdentityId,
