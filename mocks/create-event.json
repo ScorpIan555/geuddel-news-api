@@ -1,6 +1,6 @@
 {
     "body": "{\"userId\":\"mock\",\"noteId\":\"mock\",\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}",
-    "requestContext": {
+    "requestContext": {      
       "identity": {
         "cognitoIdentityId": "USER-SUB-1234"
       }

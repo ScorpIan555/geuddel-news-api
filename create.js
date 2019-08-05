@@ -12,6 +12,7 @@ export async function main(event, context) {
   const data = JSON.parse(event.body);
   const params = {
     TableName: process.env.tableName,
+    // TableName: "dev-gNewsUser",
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       noteId: uuid.v1(),

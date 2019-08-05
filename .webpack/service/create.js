@@ -128,41 +128,44 @@ function _main() {
             console.log('event:::', event);
             console.log('event:::', event.body);
             console.log('event:::', context);
-            console.log('process.env.TableName', process.env.TableName);
             console.log('process.env.TableName', process.env.tableName);
             data = JSON.parse(event.body);
             params = {
-              TableName: process.env.TableName,
-              // TableName: 'dev-gNewsNotes',
+              TableName: process.env.tableName,
+              // TableName: "dev-gNewsUser",
               Item: {
                 userId: event.requestContext.identity.cognitoIdentityId,
                 noteId: uuid__WEBPACK_IMPORTED_MODULE_3___default.a.v1(),
+                email: data.email,
+                language: data.language,
+                country: data.country,
+                category: data.category,
                 content: data.content,
                 attachment: data.attachment,
                 createdAt: Date.now()
               }
             };
-            _context.prev = 7;
-            _context.next = 10;
+            _context.prev = 6;
+            _context.next = 9;
             return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_4__["call"]("put", params);
 
-          case 10:
+          case 9:
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_5__["success"])(params.Item));
 
-          case 13:
-            _context.prev = 13;
-            _context.t0 = _context["catch"](7);
+          case 12:
+            _context.prev = 12;
+            _context.t0 = _context["catch"](6);
             console.log('error!!!::: ', _context.t0);
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_5__["failure"])({
               status: false
             }));
 
-          case 17:
+          case 16:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[7, 13]]);
+    }, _callee, null, [[6, 12]]);
   }));
   return _main.apply(this, arguments);
 }
