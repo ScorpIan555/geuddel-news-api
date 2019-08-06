@@ -15,7 +15,8 @@ export async function main(event, context) {
     TableName: process.env.userTableName,
     // TableName: "dev-gNewsUser",
     Item: {
-      userId: event.requestContext.identity.cognitoIdentityId,
+      userId: data.email,
+      userNum: event.requestContext.identity.cognitoIdentityId,
       // noteId: uuid.v1(),
       email: data.email,
       language: data.language,
