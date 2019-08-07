@@ -12,8 +12,8 @@ export async function main(event, context) {
 
   const data = JSON.parse(event.body);
   const params = {
-    TableName: process.env.userTableName,
-    // TableName: "dev-gNewsUser",
+    // TableName: process.env.userTableName,
+    TableName: "dev-gNewsUser",
     // 'Key' defines the partition key and sort key of the item to be updated
     // - 'userId': Identity Pool identity id of the authenticated user
     // - 'noteId': path parameter
@@ -36,12 +36,10 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET email = :email, country = :country, category = :category, language = :language",
+    UpdateExpression: "SET content = :content, attachment = :attachment",
     ExpressionAttributeValues: {
-      ":email": data.email || null,
-      ":country": data.country || null,
-      ":category": data.category || null,
-      ":language": data.language || null
+      ":attachment": data.attachment || null,
+      ":content": data.content || null
     },
     // 'ReturnValues' specifies if and how to return the item's attributes,
     // where ALL_NEW returns all attributes of the item after the update; you
@@ -52,7 +50,6 @@ export async function main(event, context) {
   
 
   try {
-    console.log('update.put.params:::', params);
     const result = await dynamoDbLib.call("update", params);
     console.log('update.put.result:::', result);
     console.log('update.put.params.Item:::', params.Item);
