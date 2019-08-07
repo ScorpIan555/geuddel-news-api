@@ -3,11 +3,11 @@ import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
 
-  console.log('event:::', event);
-  console.log('event.requestContext:::', event.requestContext);
-  console.log('event.body:::', event.body);
-  console.log('context:::', context);
-  console.log('process.env.TableName', process.env.userTableName);
+  console.log('update.put.event:::', event);
+  console.log('update.put.event.requestContext:::', event.requestContext);
+  console.log('update.put.event.body:::', event.body);
+  console.log('update.put.context:::', context);
+  console.log('update.put.process.env.TableName', process.env.userTableName);
 
 
   const data = JSON.parse(event.body);
@@ -19,13 +19,12 @@ export async function main(event, context) {
     // - 'noteId': path parameter
     Key: {
       // userId: event.requestContext.identity.cognitoIdentityId,
-      userId: data.email,
-      country: data.country
+      userId: data.email
     },
     Item: {
       // userId: event.requestContext.identity.cognitoIdentityId,
       userId: data.email,
-      noteId: data.noteId,
+      userNum: event.requestContext.identity.cognitoIdentityId,
       email: data.email,
       language: data.language,
       country: data.country,
@@ -51,8 +50,8 @@ export async function main(event, context) {
 
   try {
     const result = await dynamoDbLib.call("update", params);
-    console.log('result:::', result);
-    console.log('params.Item:::', params.Item);
+    console.log('update.put.result:::', result);
+    console.log('update.put.params.Item:::', params.Item);
     return success(params.Item);
   } catch (e) {
     return failure({ status: false });
