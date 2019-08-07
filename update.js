@@ -52,6 +52,7 @@ export async function main(event, context) {
   
 
   try {
+    console.log('update.put.params:::', params);
     const result = await dynamoDbLib.call("update", params);
     console.log('update.put.result:::', result);
     console.log('update.put.params.Item:::', params.Item);
