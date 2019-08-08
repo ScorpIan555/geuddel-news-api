@@ -13,6 +13,7 @@ export async function main(event, context) {
 
   const data = JSON.parse(event.body);
   const timestamp = new Date();
+  console.log('timestamp:', timestamp)
 
   if(typeof data.email !== 'string') {
     console.error('Validation Failed');

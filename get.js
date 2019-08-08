@@ -28,9 +28,11 @@ export async function main(event, context) {
       // Return the retrieved item
       return success(result.Item);
     } else {
+      console.log('ERROR.et.get.result:::', 'Item not found');
       return failure({ status: false, error: "Item not found." });
     }
   } catch (e) {
+    console.log('ERROR.et.get.result:::', e);
     return failure({ status: false });
   }
 }
