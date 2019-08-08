@@ -1,5 +1,6 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
+import { callbackify } from "util";
 
 export async function main(event, context) {
 
@@ -11,35 +12,57 @@ export async function main(event, context) {
 
 
   const data = JSON.parse(event.body);
+  const timestamp = new Date().getTime();
+
+  if(typeof data.email !== 'string') {
+    console.error('Validation Failed');
+      return {
+        statusCode: 400,
+        headers: { 
+          'Content-Type': 'text/plain'
+        },
+        body: 'Couldn\'t update user item, failed validation.'
+      }
+  }  
+
   const params = {
-    TableName: process.env.userTableName,
-    // TableName: "dev-gNewsUser",
+    // TableName: process.env.userTableName,
+    TableName: "dev-gNewsUser",
     // 'Key' defines the partition key and sort key of the item to be updated
     // - 'userId': Identity Pool identity id of the authenticated user
-    // - 'noteId': path parameter
     Key: {
-      // userId: event.requestContext.identity.cognitoIdentityId,
-      userId: data.email,
+      userId: event.requestContext.identity.cognitoIdentityId,
+      // userId: data.email,
       country: data.country
     },
     Item: {
-      // userId: event.requestContext.identity.cognitoIdentityId,
-      userId: data.email,
-      userNum: event.requestContext.identity.cognitoIdentityId,
+      userId: event.requestContext.identity.cognitoIdentityId,
+      // userId: data.email,
+      // userNum: event.requestContext.identity.cognitoIdentityId,
       email: data.email,
       language: data.language,
       country: data.country,
       category: data.category,
       content: data.content,
       attachment: data.attachment,
-      updatedAt: Date()
+      updatedAt: timestamp
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET content = :content, language = :language",
+    UpdateExpression: "SET #email = :email, #updatedAt = :updatedAt, #category = :category, #language = :language, content = :content, attachment = :attachment",
+    ExpressionAttributeNames: {
+      '#language': 'language',
+      '#category': 'category',
+      '#updatedAt': 'updatedAt',
+      '#email': 'email'
+    },
     ExpressionAttributeValues: {
+      ":attachment": data.attachment || null,
+      ":content": data.content || null,
       ":language": data.language || null,
-      ":content": data.content || null
+      ":category": data.category || null,
+      ":updatedAt": timestamp,
+      ":email": data.email || null
     },
     // 'ReturnValues' specifies if and how to return the item's attributes,
     // where ALL_NEW returns all attributes of the item after the update; you

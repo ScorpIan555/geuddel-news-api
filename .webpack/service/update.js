@@ -161,6 +161,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/dynamodb-lib */ "./libs/dynamodb-lib.js");
 /* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! util */ "util");
+/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -174,73 +177,101 @@ function _main() {
   _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
   /*#__PURE__*/
   _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
-    var data, params, result;
+    var data, timestamp, params, result;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('event:::', event);
-            console.log('event.requestContext:::', event.requestContext);
-            console.log('event.body:::', event.body);
-            console.log('context:::', context);
-            console.log('process.env.TableName', process.env.userTableName);
+            console.log('update.put.event:::', event);
+            console.log('update.put.event.requestContext:::', event.requestContext);
+            console.log('update.put.event.body:::', event.body);
+            console.log('update.put.context:::', context);
+            console.log('update.put.process.env.TableName', process.env.userTableName);
             data = JSON.parse(event.body);
+            timestamp = new Date().getTime();
+
+            if (!(typeof data.email !== 'string')) {
+              _context.next = 10;
+              break;
+            }
+
+            console.error('Validation Failed');
+            return _context.abrupt("return", {
+              statusCode: 400,
+              headers: {
+                'Content-Type': 'text/plain'
+              },
+              body: 'Couldn\'t update user item, failed validation.'
+            });
+
+          case 10:
             params = {
               // TableName: process.env.userTableName,
               TableName: "dev-gNewsUser",
               // 'Key' defines the partition key and sort key of the item to be updated
               // - 'userId': Identity Pool identity id of the authenticated user
-              // - 'noteId': path parameter
               Key: {
                 userId: event.requestContext.identity.cognitoIdentityId,
+                // userId: data.email,
                 country: data.country
               },
               Item: {
                 userId: event.requestContext.identity.cognitoIdentityId,
-                noteId: data.noteId,
+                // userId: data.email,
+                // userNum: event.requestContext.identity.cognitoIdentityId,
                 email: data.email,
                 language: data.language,
                 country: data.country,
                 category: data.category,
                 content: data.content,
                 attachment: data.attachment,
-                updatedAt: Date()
+                updatedAt: timestamp
               },
               // 'UpdateExpression' defines the attributes to be updated
               // 'ExpressionAttributeValues' defines the value in the update expression
-              UpdateExpression: "SET content = :content, attachment = :attachment",
+              UpdateExpression: "SET #email = :email, #updatedAt = :updatedAt, #category = :category, #language = :language, content = :content, attachment = :attachment",
+              ExpressionAttributeNames: {
+                '#language': 'language',
+                '#category': 'category',
+                '#updatedAt': 'updatedAt',
+                '#email': 'email'
+              },
               ExpressionAttributeValues: {
                 ":attachment": data.attachment || null,
-                ":content": data.content || null
+                ":content": data.content || null,
+                ":language": data.language || null,
+                ":category": data.category || null,
+                ":updatedAt": timestamp,
+                ":email": data.email || null
               },
               // 'ReturnValues' specifies if and how to return the item's attributes,
               // where ALL_NEW returns all attributes of the item after the update; you
               // can inspect 'result' below to see how it works with different settings
               ReturnValues: "ALL_NEW"
             };
-            _context.prev = 7;
-            _context.next = 10;
+            _context.prev = 11;
+            _context.next = 14;
             return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__["call"]("update", params);
 
-          case 10:
+          case 14:
             result = _context.sent;
-            console.log('result:::', result);
-            console.log('params.Item:::', params.Item);
+            console.log('update.put.result:::', result);
+            console.log('update.put.params.Item:::', params.Item);
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])(params.Item));
 
-          case 16:
-            _context.prev = 16;
-            _context.t0 = _context["catch"](7);
+          case 20:
+            _context.prev = 20;
+            _context.t0 = _context["catch"](11);
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
               status: false
             }));
 
-          case 19:
+          case 23:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[7, 16]]);
+    }, _callee, null, [[11, 20]]);
   }));
   return _main.apply(this, arguments);
 }
@@ -288,6 +319,17 @@ module.exports = require("aws-sdk");
 /***/ (function(module, exports) {
 
 module.exports = require("source-map-support/register");
+
+/***/ }),
+
+/***/ "util":
+/*!***********************!*\
+  !*** external "util" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("util");
 
 /***/ })
 
