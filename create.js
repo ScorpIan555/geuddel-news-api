@@ -10,12 +10,12 @@ export async function main(event, context) {
   console.log('create.post.process.env.TableName', process.env.userTableName);
 
   const data = JSON.parse(event.body);
+  const timestamp = new Date();
 
   const params = {
     TableName: process.env.userTableName,
     // TableName: "dev-gNewsUser",
     Item: {
-      // userId: data.email,
       userId: event.requestContext.identity.cognitoIdentityId,
       // noteId: uuid.v1(),
       email: data.email,
@@ -24,8 +24,8 @@ export async function main(event, context) {
       category: data.category,
       content: data.content,
       attachment: data.attachment,
-      createdAt: Date(),
-      updatedAt: Date()
+      createdAt: timestamp,
+      updatedAt: timestamp
     }
   };
 

@@ -12,7 +12,7 @@ export async function main(event, context) {
 
 
   const data = JSON.parse(event.body);
-  const timestamp = new Date().getTime();
+  const timestamp = new Date();
 
   if(typeof data.email !== 'string') {
     console.error('Validation Failed');
@@ -26,19 +26,18 @@ export async function main(event, context) {
   }  
 
   const params = {
-    // TableName: process.env.userTableName,
-    TableName: "dev-gNewsUser",
+    TableName: process.env.userTableName,
+    // TableName: "dev-gNewsUser",
     // 'Key' defines the partition key and sort key of the item to be updated
     // - 'userId': Identity Pool identity id of the authenticated user
     Key: {
-      userId: event.requestContext.identity.cognitoIdentityId,
-      // userId: data.email,
+      // userId: event.requestContext.identity.cognitoIdentityId,
+      userId: data.email,
       country: data.country
     },
     Item: {
-      userId: event.requestContext.identity.cognitoIdentityId,
-      // userId: data.email,
-      // userNum: event.requestContext.identity.cognitoIdentityId,
+      // userId: event.requestContext.identity.cognitoIdentityId,
+      userId: data.email,
       email: data.email,
       language: data.language,
       country: data.country,
