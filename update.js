@@ -36,7 +36,7 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET content = :content, attachment = :attachment",
+    UpdateExpression: "SET content = :content, language = :language",
     ExpressionAttributeValues: {
       ":attachment": data.language || null,
       ":content": data.content || null
