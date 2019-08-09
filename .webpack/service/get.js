@@ -147,28 +147,42 @@ function _main() {
           case 9:
             result = _context.sent;
             console.log('get.get.result:::', result); // console.log('get.get.result:::', result.Item);
-            // if (result.Item) {
-            //   console.log('get.get.result:::', result);
-            //   console.log('get.get.result:::', result.Item);
-            //   // Return the retrieved item
-            //   return success(result.Item);
 
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])(result));
+            if (!result.Item) {
+              _context.next = 17;
+              break;
+            }
 
-          case 14:
-            _context.prev = 14;
+            console.log('get.get.result:::', result);
+            console.log('get.get.result:::', result.Item); // Return the retrieved item
+
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])(result.Item));
+
+          case 17:
+            console.log('ERROR.et.get.result:::', 'Item not found');
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
+              status: false,
+              error: "Item not found."
+            }));
+
+          case 19:
+            _context.next = 25;
+            break;
+
+          case 21:
+            _context.prev = 21;
             _context.t0 = _context["catch"](6);
             console.log('ERROR.et.get.result:::', _context.t0);
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
               status: false
             }));
 
-          case 18:
+          case 25:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[6, 14]]);
+    }, _callee, null, [[6, 21]]);
   }));
   return _main.apply(this, arguments);
 }
