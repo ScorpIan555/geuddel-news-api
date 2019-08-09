@@ -27,11 +27,11 @@ export async function main(event, context) {
     const result = await dynamoDbLib.call("get", params);
     console.log('get.get.result:::', result);
       // console.log('get.get.result:::', result.Item);
-    if (result.Item) {
+    if (result) {
       console.log('get.get.result:::', result);
-      console.log('get.get.result:::', result.Item);
+      console.log('get.get.result:::', result);
       // Return the retrieved item
-      return success(result.Item);
+      return success(result);
     
     } else {
       console.log('ERROR.et.get.result:::', 'Item not found');
@@ -42,3 +42,17 @@ export async function main(event, context) {
     return failure({ status: false });
   }
 }
+
+
+
+
+// if (result.Item) {
+//   console.log('get.get.result:::', result);
+//   console.log('get.get.result:::', result.Item);
+//   // Return the retrieved item
+//   return success(result.Item);
+
+// } else {
+//   console.log('ERROR.et.get.result:::', 'Item not found');
+//   return failure({ status: false, error: "Item not found." });
+// }

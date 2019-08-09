@@ -88,7 +88,7 @@
     handler: list.main
     events:
       - http:
-          path: user
+          path: user/list
           method: get
           cors: true
           authorizer: aws_iam
