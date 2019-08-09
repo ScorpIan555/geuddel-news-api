@@ -81,10 +81,99 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./update.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./get.js");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./get.js":
+/*!****************!*\
+  !*** ./get.js ***!
+  \****************/
+/*! exports provided: main */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "@babel/runtime/helpers/asyncToGenerator");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/dynamodb-lib */ "./libs/dynamodb-lib.js");
+/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
+
+
+
+
+
+function main(_x, _x2) {
+  return _main.apply(this, arguments);
+}
+
+function _main() {
+  _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
+    var params, result;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log('get.get.event:::', event);
+            console.log('get.get.event.requestContext:::', event.requestContext);
+            console.log('get.get.event.queryStringParameters:::', event.queryStringParameters);
+            console.log('get.get.context:::', context);
+            console.log('get.get.process.env.TableName', process.env.userTableName); // destructure and assign query params received from client
+            // let { userId, country, email, language, category } = event.queryPathParameters;
+
+            params = {
+              TableName: process.env.userTableName,
+              // 'Key' defines the partition key and sort key of the item to be retrieved
+              // - 'userId': Identity Pool identity id of the authenticated user
+              // - 'noteId': path parameter
+              Key: {
+                // userId: event.requestContext.identity.cognitoIdentityId,
+                userId: event.queryStringParameters.userId,
+                country: event.queryStringParameters.country
+              }
+            };
+            _context.prev = 6;
+            _context.next = 9;
+            return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__["call"]("get", params);
+
+          case 9:
+            result = _context.sent;
+            console.log('get.get.result:::', result); // console.log('get.get.result:::', result.Item);
+            // if (result.Item) {
+            //   console.log('get.get.result:::', result);
+            //   console.log('get.get.result:::', result.Item);
+            //   // Return the retrieved item
+            //   return success(result.Item);
+
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])(result));
+
+          case 14:
+            _context.prev = 14;
+            _context.t0 = _context["catch"](6);
+            console.log('ERROR.et.get.result:::', _context.t0);
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
+              status: false
+            }));
+
+          case 18:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[6, 14]]);
+  }));
+  return _main.apply(this, arguments);
+}
+
+/***/ }),
 
 /***/ "./libs/dynamodb-lib.js":
 /*!******************************!*\
@@ -143,141 +232,6 @@ function buildResponse(statusCode, body) {
 
 /***/ }),
 
-/***/ "./update.js":
-/*!*******************!*\
-  !*** ./update.js ***!
-  \*******************/
-/*! exports provided: main */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "@babel/runtime/helpers/asyncToGenerator");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/dynamodb-lib */ "./libs/dynamodb-lib.js");
-/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
-/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! util */ "util");
-/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_5__);
-
-
-
-
-
-
-function main(_x, _x2) {
-  return _main.apply(this, arguments);
-}
-
-function _main() {
-  _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
-    var data, timestamp, params, result;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            console.log('update.put.event:::', event);
-            console.log('update.put.event.requestContext:::', event.requestContext);
-            console.log('update.put.event.body:::', event.body);
-            console.log('update.put.context:::', context);
-            console.log('update.put.process.env.TableName', process.env.userTableName);
-            data = JSON.parse(event.body);
-            timestamp = new Date().getTime();
-
-            if (!(typeof data.email !== 'string')) {
-              _context.next = 10;
-              break;
-            }
-
-            console.error('Validation Failed');
-            return _context.abrupt("return", {
-              statusCode: 400,
-              headers: {
-                'Content-Type': 'text/plain'
-              },
-              body: 'Couldn\'t update user item, failed validation.'
-            });
-
-          case 10:
-            params = {
-              // TableName: process.env.userTableName,
-              TableName: "dev-gNewsUser",
-              // 'Key' defines the partition key and sort key of the item to be updated
-              // - 'userId': Identity Pool identity id of the authenticated user
-              Key: {
-                userId: event.requestContext.identity.cognitoIdentityId,
-                // userId: data.email,
-                country: data.country
-              },
-              Item: {
-                userId: event.requestContext.identity.cognitoIdentityId,
-                // userId: data.email,
-                // userNum: event.requestContext.identity.cognitoIdentityId,
-                email: data.email,
-                language: data.language,
-                country: data.country,
-                category: data.category,
-                content: data.content,
-                attachment: data.attachment,
-                updatedAt: timestamp
-              },
-              // 'UpdateExpression' defines the attributes to be updated
-              // 'ExpressionAttributeValues' defines the value in the update expression
-              UpdateExpression: "SET #email = :email, #updatedAt = :updatedAt, #category = :category, #language = :language, content = :content, attachment = :attachment",
-              ExpressionAttributeNames: {
-                '#language': 'language',
-                '#category': 'category',
-                '#updatedAt': 'updatedAt',
-                '#email': 'email'
-              },
-              ExpressionAttributeValues: {
-                ":attachment": data.attachment || null,
-                ":content": data.content || null,
-                ":language": data.language || null,
-                ":category": data.category || null,
-                ":updatedAt": timestamp,
-                ":email": data.email || null
-              },
-              // 'ReturnValues' specifies if and how to return the item's attributes,
-              // where ALL_NEW returns all attributes of the item after the update; you
-              // can inspect 'result' below to see how it works with different settings
-              ReturnValues: "ALL_NEW"
-            };
-            _context.prev = 11;
-            _context.next = 14;
-            return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__["call"]("update", params);
-
-          case 14:
-            result = _context.sent;
-            console.log('update.put.result:::', result);
-            console.log('update.put.params.Item:::', params.Item);
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])(params.Item));
-
-          case 20:
-            _context.prev = 20;
-            _context.t0 = _context["catch"](11);
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
-              status: false
-            }));
-
-          case 23:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[11, 20]]);
-  }));
-  return _main.apply(this, arguments);
-}
-
-/***/ }),
-
 /***/ "@babel/runtime/helpers/asyncToGenerator":
 /*!**********************************************************!*\
   !*** external "@babel/runtime/helpers/asyncToGenerator" ***!
@@ -320,18 +274,7 @@ module.exports = require("aws-sdk");
 
 module.exports = require("source-map-support/register");
 
-/***/ }),
-
-/***/ "util":
-/*!***********************!*\
-  !*** external "util" ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("util");
-
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=update.js.map
+//# sourceMappingURL=get.js.map
