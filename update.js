@@ -45,7 +45,7 @@ export async function main(event, context) {
       category: data.category,
       content: data.content,
       attachment: data.attachment,
-      updatedAt: timestamp
+      updatedAt: Date()
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
