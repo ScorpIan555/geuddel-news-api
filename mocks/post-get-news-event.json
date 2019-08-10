@@ -1,9 +1,0 @@
-{
-    "body": "{\"sources\":\"\",\"q\":\"brexit\",\"category\":\"\",\"language\":\"en\"}",
-    "requestContext": {
-      "identity": {
-        "cognitoIdentityId": "USER-SUB-1234"
-      }
-    }
-  }
-  

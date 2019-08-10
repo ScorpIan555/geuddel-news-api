@@ -1,11 +1,11 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
-import { callbackify } from "util";
 
 export async function main(event, context) {
 
   console.log('update.put.event:::', event);
   console.log('update.put.event.requestContext:::', event.requestContext);
+  console.log('update.put.event.pathParameters:::', event.pathParameters);
   console.log('update.put.event.body:::', event.body);
   console.log('update.put.context:::', context);
   console.log('update.put.process.env.TableName', process.env.userTableName);
@@ -34,7 +34,7 @@ export async function main(event, context) {
     Key: {
       // userId: event.requestContext.identity.cognitoIdentityId,
       userId: data.email,
-      country: data.country
+      email: data.email
     },
     Item: {
       // userId: event.requestContext.identity.cognitoIdentityId,

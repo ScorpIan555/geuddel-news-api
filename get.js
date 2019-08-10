@@ -19,7 +19,7 @@ export async function main(event, context) {
     Key: {
       // userId: event.requestContext.identity.cognitoIdentityId,
       userId: event.queryStringParameters.userId,
-      country: event.queryStringParameters.country
+      email: event.queryStringParameters.email
     }
   };
 

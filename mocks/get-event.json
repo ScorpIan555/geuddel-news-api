@@ -4,7 +4,7 @@
     },
     "queryStringParameters": {
       "userId": "vandaleyindustriesllc@gmail.com",
-      "country": "us"
+      "email": "vandaleyindustriesllc@gmail.com"
     },
     "requestContext": {
       "identity": {
