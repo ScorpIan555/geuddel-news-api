@@ -28,7 +28,7 @@ Resources:
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
-        - AttributeName: country
+        - AttributeName: email
           AttributeType: S
       # Note: functions can create further attributes/fields
       #     So as to minimize complexity, only defining minimal necessary attributes here
