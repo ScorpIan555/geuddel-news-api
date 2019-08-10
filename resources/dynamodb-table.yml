@@ -20,7 +20,6 @@ Resources:
         ReadCapacityUnits: ${self:custom.tableThroughput}
         WriteCapacityUnits: ${self:custom.tableThroughput}
 
-
   UserTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -28,15 +27,11 @@ Resources:
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
-        - AttributeName: email
-          AttributeType: S
       # Note: functions can create further attributes/fields
       #     So as to minimize complexity, only defining minimal necessary attributes here
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
-        - AttributeName: email
-          KeyType: RANGE
       # Set the capacity based on the stage
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
