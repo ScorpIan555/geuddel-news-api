@@ -19,7 +19,7 @@ custom:
   # Set the table name here so we can use it while testing locally
   notesTableName: ${self:custom.stage}-gNewsNotes
   # Set the table name here so we can use it while testing locally
-  userTableName: ${self:custom.stage}-gNewsUser
+  userTableName: ${self:custom.stage}-geuddelNewsUser
   # Set our DynamoDB throughput for prod and all other non-prod stages.
   tableThroughputs:
     prod: 5
