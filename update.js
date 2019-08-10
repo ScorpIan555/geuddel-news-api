@@ -24,7 +24,7 @@ export async function main(event, context) {
         },
         body: 'Couldn\'t update user item, failed validation.'
       }
-  }  
+  }
 
   const params = {
     TableName: process.env.userTableName,
@@ -33,8 +33,7 @@ export async function main(event, context) {
     // - 'userId': Identity Pool identity id of the authenticated user
     Key: {
       // userId: event.requestContext.identity.cognitoIdentityId,
-      userId: data.email,
-      email: data.email
+      userId: data.email
     },
     Item: {
       // userId: event.requestContext.identity.cognitoIdentityId,
@@ -49,9 +48,10 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET #email = :email, #updatedAt = :updatedAt, #category = :category, #language = :language, content = :content, attachment = :attachment",
+    UpdateExpression: "SET #email = :email, #updatedAt = :updatedAt, #category = :category, #country = :country,  #language = :language, content = :content, attachment = :attachment",
     ExpressionAttributeNames: {
       '#language': 'language',
+      '#country': 'country',
       '#category': 'category',
       '#updatedAt': 'updatedAt',
       '#email': 'email'
@@ -60,6 +60,7 @@ export async function main(event, context) {
       ":attachment": data.attachment || null,
       ":content": data.content || null,
       ":language": data.language || null,
+      ":country": data.country || null,
       ":category": data.category || null,
       ":updatedAt": timestamp,
       ":email": data.email || null

@@ -81,14 +81,14 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./create.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./delete.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./create.js":
+/***/ "./delete.js":
 /*!*******************!*\
-  !*** ./create.js ***!
+  !*** ./delete.js ***!
   \*******************/
 /*! exports provided: main */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -102,11 +102,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
 /* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! uuid */ "uuid");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/dynamodb-lib */ "./libs/dynamodb-lib.js");
-/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
-
+/* harmony import */ var _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/dynamodb-lib */ "./libs/dynamodb-lib.js");
+/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
 
 
 
@@ -120,56 +117,47 @@ function _main() {
   _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
   /*#__PURE__*/
   _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
-    var data, params;
+    var params, result;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('create.post.event:::', event);
-            console.log('create.post.event.requestContext:::', event.requestContext);
-            console.log('create.post.event.body:::', event.body);
-            console.log('create.post.context:::', context);
-            console.log('create.post.process.env.TableName', process.env.userTableName);
-            data = JSON.parse(event.body);
+            console.log('delete.delete.event:::', event);
+            console.log('delete.delete.event.pathParameters:::', event.pathParameters);
+            console.log('delete.delete.context:::', context);
             params = {
               TableName: process.env.userTableName,
-              // TableName: "dev-gNewsUser",
-              Item: {
+              // 'Key' defines the partition key and sort key of the item to be removed
+              // - 'userId': Identity Pool identity id of the authenticated user
+              // - 'noteId': path parameter
+              Key: {
                 // userId: event.requestContext.identity.cognitoIdentityId,
-                userId: data.email,
-                // noteId: uuid.v1(),
-                email: data.email,
-                language: data.language,
-                country: data.country,
-                category: data.category,
-                content: data.content,
-                attachment: data.attachment,
-                createdAt: Date(),
-                updatedAt: Date()
+                userId: event.pathParameters.userId
               }
             };
-            _context.prev = 7;
-            _context.next = 10;
-            return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_4__["call"]("put", params);
+            _context.prev = 4;
+            _context.next = 7;
+            return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__["call"]("delete", params);
 
-          case 10:
-            console.log('create.post.params.Item:::', params.Item);
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_5__["success"])(params.Item));
+          case 7:
+            result = _context.sent;
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])({
+              status: true
+            }));
 
-          case 14:
-            _context.prev = 14;
-            _context.t0 = _context["catch"](7);
-            console.log('error!!!::: ', _context.t0);
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_5__["failure"])({
+          case 11:
+            _context.prev = 11;
+            _context.t0 = _context["catch"](4);
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
               status: false
             }));
 
-          case 18:
+          case 14:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[7, 14]]);
+    }, _callee, null, [[4, 11]]);
   }));
   return _main.apply(this, arguments);
 }
@@ -275,18 +263,7 @@ module.exports = require("aws-sdk");
 
 module.exports = require("source-map-support/register");
 
-/***/ }),
-
-/***/ "uuid":
-/*!***********************!*\
-  !*** external "uuid" ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("uuid");
-
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=create.js.map
+//# sourceMappingURL=delete.js.map
