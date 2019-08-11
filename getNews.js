@@ -21,7 +21,6 @@ export async function main(event, context) {
     // console.log('query path parameters', queryPathData);
       // make asynchronous api call to Newsapi.org for headlines
     try {
-      
       const news = await newsapi.v2.topHeadlines({
         // sources: 'bbc-news,the-verge',
         // q: 'bitcoin',

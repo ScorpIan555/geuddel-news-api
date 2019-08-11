@@ -13,17 +13,17 @@ export async function main(event, context) {
 
   const data = JSON.parse(event.body);
   const timestamp = new Date();
-  console.log('timestamp:', timestamp)
+  console.log('timestamp:', timestamp);
 
   if(typeof data.email !== 'string') {
     console.error('Validation Failed');
       return {
         statusCode: 400,
-        headers: { 
+        headers: {
           'Content-Type': 'text/plain'
         },
         body: 'Couldn\'t update user item, failed validation.'
-      }
+      };
   }
 
   const params = {
@@ -70,8 +70,6 @@ export async function main(event, context) {
     // can inspect 'result' below to see how it works with different settings
     ReturnValues: "ALL_NEW"
   };
-
-  
 
   try {
     const result = await dynamoDbLib.call("update", params);
