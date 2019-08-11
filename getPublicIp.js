@@ -11,7 +11,7 @@ export async function main(event, context) {
         // console.log('ipResponse.data:::', response.data);
         // console.log('ipResponse.data:::', typeof(response.data));
         //    return success({ status: true, data: userLocation });
-        const userLocation = response.data;   
+        const userLocation = response.data;
         // console.log('success({ status: true, data: userLocation }):::', success({ status: true, data: userLocation }));
         return success({ status: true, data: userLocation });
 
