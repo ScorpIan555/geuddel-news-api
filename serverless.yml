@@ -27,7 +27,7 @@ custom:
   tableThroughput: ${self:custom.tableThroughputs.${self:custom.stage}, self:custom.tableThroughputs.default}
   # Load our webpack config
   webpack:
-    webpackConfig: ./webpack.config.js
+    # webpackConfig: ./webpack.config.js
     includeModules: true
   # Load secret env variables based on stage
   environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
