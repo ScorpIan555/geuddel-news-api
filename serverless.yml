@@ -7,8 +7,9 @@ service: geuddel-news-api
 
 # app plugins to transpile ES6/ES7
 plugins:
-  - serverless-bundle
+  # - serverless-bundle
   - serverless-offline
+  - serverless-webpack
 
 # serverless-webpack configuration
 # Enable auto-packing of external modules
@@ -26,9 +27,9 @@ custom:
     default: 1
   tableThroughput: ${self:custom.tableThroughputs.${self:custom.stage}, self:custom.tableThroughputs.default}
   # Load our webpack config
-  # webpack:
-  #   # webpackConfig: ./webpack.config.js
-  #   includeModules: true
+  webpack:
+    # webpackConfig: ./webpack.config.js
+    includeModules: true
   # Load secret env variables based on stage
   environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
 
@@ -58,8 +59,8 @@ provider:
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:
-        - "Fn::GetAtt": [ GNewsNotesTable, Arn ]
-        - "Fn::GetAtt": [ UserTable, Arn ]
+        - "Fn::GetAtt": [GNewsNotesTable, Arn]
+        - "Fn::GetAtt": [UserTable, Arn]
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -91,7 +92,7 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-- ${file(resources/lambda-functions.yml)}
+  - ${file(resources/lambda-functions.yml)}
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -144,11 +145,6 @@ resources:
   # Cognito
   - ${file(resources/cognito-user-pool.yml)}
   - ${file(resources/cognito-identity-pool.yml)}
-
-
-
-
-
 #  Outputs:
 #     NewOutput:
 #       Description: "Description for the output"

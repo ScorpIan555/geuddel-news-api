@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./delete.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./get.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./delete.js":
-/*!*******************!*\
-  !*** ./delete.js ***!
-  \*******************/
+/***/ "./get.js":
+/*!****************!*\
+  !*** ./get.js ***!
+  \****************/
 /*! exports provided: main */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -122,42 +122,66 @@ function _main() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('delete.delete.event:::', event);
-            console.log('delete.delete.event.pathParameters:::', event.pathParameters);
-            console.log('delete.delete.context:::', context);
+            console.log("get.get.event:::", event);
+            console.log("get.get.event.requestContext:::", event.requestContext);
+            console.log("get.get.event.queryStringParameters:::", event.queryStringParameters);
+            console.log("get.get.context:::", context);
+            console.log("get.get.process.env.TableName", process.env.userTableName); // destructure and assign query params received from client
+            // let { userId, country, email, language, category } = event.queryPathParameters;
+
             params = {
               TableName: process.env.userTableName,
-              // 'Key' defines the partition key and sort key of the item to be removed
+              // 'Key' defines the partition key and sort key of the item to be retrieved
               // - 'userId': Identity Pool identity id of the authenticated user
               // - 'noteId': path parameter
               Key: {
                 // userId: event.requestContext.identity.cognitoIdentityId,
-                userId: event.pathParameters.userId
+                userId: event.queryStringParameters.userId
               }
             };
-            _context.prev = 4;
-            _context.next = 7;
-            return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__["call"]("delete", params);
+            _context.prev = 6;
+            _context.next = 9;
+            return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__["call"]("get", params);
 
-          case 7:
+          case 9:
             result = _context.sent;
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])({
-              status: true
+            console.log("get.get.result:::", result); // console.log('get.get.result:::', result.Item);
+
+            if (!result.Item) {
+              _context.next = 17;
+              break;
+            }
+
+            console.log("get.get.result:::", result);
+            console.log("get.get.result:::", result.Item); // Return the retrieved item
+
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])(result.Item));
+
+          case 17:
+            console.log("ERROR.et.get.result:::", "Item not found");
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
+              status: false,
+              error: "Item not found."
             }));
 
-          case 11:
-            _context.prev = 11;
-            _context.t0 = _context["catch"](4);
+          case 19:
+            _context.next = 25;
+            break;
+
+          case 21:
+            _context.prev = 21;
+            _context.t0 = _context["catch"](6);
+            console.log("ERROR.et.get.result:::", _context.t0);
             return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
               status: false
             }));
 
-          case 14:
+          case 25:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[4, 11]]);
+    }, _callee, null, [[6, 21]]);
   }));
   return _main.apply(this, arguments);
 }
@@ -266,4 +290,4 @@ module.exports = require("source-map-support/register");
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=delete.js.map
+//# sourceMappingURL=get.js.map

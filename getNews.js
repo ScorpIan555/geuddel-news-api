@@ -15,7 +15,7 @@ export async function main(event, context) {
   // const queryPathData = event.pathParameters;
 
   if (reqQuery !== null) {
-    const { sources, q, category, language, country } = reqQuery;
+    // const { sources, q, category, language, country } = reqQuery;
 
     console.log("reqQuery:::", reqQuery);
     // console.log('query path parameters', queryPathData);
@@ -26,12 +26,12 @@ export async function main(event, context) {
         // q: 'bitcoin',
         // category: 'business',
         // language: 'en',
-        // country: 'us'
-        sources: sources,
-        q: q,
-        category: category,
-        language: language,
-        country: country
+        country: "us"
+        // sources: sources,
+        // q: q,
+        // category: category,
+        // language: language,
+        // country: country
       });
       // logging output during development
       console.log("news api call result :::", news);
