@@ -1,16 +1,15 @@
 {
-    "queryStringParameters": {
-        "apiKey": "4241ab4846a24b608a14e933dc323eb1",
-        "language": "es",
-        "country": "ar",
-        "q": "",
-        "category": "",
-        "sources": ""
-      },
-    "requestContext": {
-      "identity": {
-        "cognitoIdentityId": "USER-SUB-1234"
-      }
+  "queryStringParameters": {
+    "apiKey": "4241ab4846a24b608a14e933dc323eb1",
+    "language": "es",
+    "country": "ar",
+    "q": "",
+    "category": "",
+    "sources": ""
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
     }
   }
-  
+}

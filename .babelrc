@@ -1,15 +1,12 @@
 {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false
-        }
-      ]
-    ],
-    // babel-specific webpack plugin"s
-    "plugins": [
-      "@babel/plugin-transform-runtime",
-      "source-map-support"
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
     ]
+  ],
+  // babel-specific webpack plugin"s
+  "plugins": ["@babel/plugin-transform-runtime", "source-map-support"]
 }

@@ -1,15 +1,14 @@
 {
-    "pathParameters": {
-      "id": "578eb840-f70f-11e6-9d1a-1359b3b22944"
-    },
-    "queryStringParameters": {
-      "userId": "vandaleyindustriesllc@gmail.com",
-      "email": "vandaleyindustriesllc@gmail.com"
-    },
-    "requestContext": {
-      "identity": {
-        "cognitoIdentityId": "USER-SUB-1234"
-      }
+  "pathParameters": {
+    "id": "578eb840-f70f-11e6-9d1a-1359b3b22944"
+  },
+  "queryStringParameters": {
+    "userId": "vandaleyindustriesllc@gmail.com",
+    "email": "vandaleyindustriesllc@gmail.com"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
     }
   }
-  
+}
