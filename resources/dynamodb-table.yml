@@ -28,7 +28,7 @@ Resources:
         - AttributeName: userId
           AttributeType: S
       # Note: functions can create further attributes/fields
-      #     So as to minimize complexity, only defining minimal necessary attributes here
+      #     AWS docs recommend defining minimum fields in this space
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
