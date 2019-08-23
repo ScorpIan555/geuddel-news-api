@@ -11,6 +11,16 @@ export async function main(event, context) {
 
   const data = JSON.parse(event.body);
 
+  if (data.language == "") {
+    data.language = false;
+  }
+  if (data.country == "") {
+    data.country = false;
+  }
+  if (data.category == "") {
+    data.category = false;
+  }
+
   const params = {
     TableName: process.env.userTableName,
     // TableName: "dev-gNewsUser",

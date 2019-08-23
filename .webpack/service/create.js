@@ -81,10 +81,111 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./update.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./create.js");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./create.js":
+/*!*******************!*\
+  !*** ./create.js ***!
+  \*******************/
+/*! exports provided: main */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "@babel/runtime/helpers/asyncToGenerator");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
+/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/dynamodb-lib */ "./libs/dynamodb-lib.js");
+/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
+
+
+
+// import uuid from "uuid";
+
+
+function main(_x, _x2) {
+  return _main.apply(this, arguments);
+}
+
+function _main() {
+  _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
+    var data, params;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log("create.post.event:::", event);
+            console.log("create.post.event.requestContext:::", event.requestContext);
+            console.log("create.post.event.body:::", event.body);
+            console.log("create.post.context:::", context);
+            console.log("create.post.process.env.TableName", process.env.userTableName);
+            data = JSON.parse(event.body);
+
+            if (data.language == "") {
+              data.language = false;
+            }
+
+            if (data.country == "") {
+              data.country = false;
+            }
+
+            if (data.category == "") {
+              data.category = false;
+            }
+
+            params = {
+              TableName: process.env.userTableName,
+              // TableName: "dev-gNewsUser",
+              Item: {
+                // userId: event.requestContext.identity.cognitoIdentityId,
+                userId: data.email,
+                // noteId: uuid.v1(),
+                email: data.email,
+                language: data.language,
+                country: data.country,
+                category: data.category,
+                content: data.content,
+                attachment: data.attachment,
+                createdAt: Date(),
+                updatedAt: Date()
+              }
+            };
+            _context.prev = 10;
+            _context.next = 13;
+            return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__["call"]("put", params);
+
+          case 13:
+            console.log("create.post.params.Item:::", params.Item);
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])(params.Item));
+
+          case 17:
+            _context.prev = 17;
+            _context.t0 = _context["catch"](10);
+            console.log("error!!!::: ", _context.t0);
+            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
+              status: false
+            }));
+
+          case 21:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[10, 17]]);
+  }));
+  return _main.apply(this, arguments);
+}
+
+/***/ }),
 
 /***/ "./libs/dynamodb-lib.js":
 /*!******************************!*\
@@ -143,140 +244,6 @@ function buildResponse(statusCode, body) {
 
 /***/ }),
 
-/***/ "./update.js":
-/*!*******************!*\
-  !*** ./update.js ***!
-  \*******************/
-/*! exports provided: main */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "@babel/runtime/helpers/asyncToGenerator");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! source-map-support/register */ "source-map-support/register");
-/* harmony import */ var source_map_support_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(source_map_support_register__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/dynamodb-lib */ "./libs/dynamodb-lib.js");
-/* harmony import */ var _libs_response_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/response-lib */ "./libs/response-lib.js");
-
-
-
-
-
-function main(_x, _x2) {
-  return _main.apply(this, arguments);
-}
-
-function _main() {
-  _main = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event, context) {
-    var data, timestamp, params, result;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            console.log("update.put.event:::", event);
-            console.log("update.put.event.requestContext:::", event.requestContext);
-            console.log("update.put.event.pathParameters:::", event.pathParameters);
-            console.log("update.put.event.body:::", event.body);
-            console.log("update.put.context:::", context);
-            console.log("update.put.process.env.TableName", process.env.userTableName);
-            data = JSON.parse(event.body);
-            timestamp = new Date();
-            console.log("timestamp:", timestamp);
-
-            if (!(typeof data.email !== "string")) {
-              _context.next = 12;
-              break;
-            }
-
-            console.error("Validation Failed");
-            return _context.abrupt("return", {
-              statusCode: 400,
-              headers: {
-                "Content-Type": "text/plain"
-              },
-              body: "Couldn't update user item, failed validation."
-            });
-
-          case 12:
-            params = {
-              TableName: process.env.userTableName,
-              // TableName: "dev-gNewsUser",
-              // 'Key' defines the partition key and sort key of the item to be updated
-              // - 'userId': Identity Pool identity id of the authenticated user
-              Key: {
-                // userId: event.requestContext.identity.cognitoIdentityId,
-                userId: data.email
-              },
-              Item: {
-                // userId: event.requestContext.identity.cognitoIdentityId,
-                userId: data.email,
-                email: data.email,
-                language: data.language,
-                country: data.country,
-                category: data.category,
-                content: data.content,
-                attachment: data.attachment,
-                updatedAt: Date()
-              },
-              // 'UpdateExpression' defines the attributes to be updated
-              UpdateExpression: "SET #email = :email, #updatedAt = :updatedAt, #category = :category, #country = :country,  #language = :language, content = :content, attachment = :attachment",
-              ExpressionAttributeNames: {
-                "#language": "language",
-                "#country": "country",
-                "#category": "category",
-                "#updatedAt": "updatedAt",
-                "#email": "email"
-              },
-              // 'ExpressionAttributeValues' defines the value in the update expression
-              ExpressionAttributeValues: {
-                ":attachment": data.attachment || null,
-                ":content": data.content || null,
-                ":language": data.language || null,
-                ":country": data.country || null,
-                ":category": data.category || null,
-                ":updatedAt": timestamp,
-                ":email": data.email || null
-              },
-              // 'ReturnValues' specifies if and how to return the item's attributes,
-              // where ALL_NEW returns all attributes of the item after the update; you
-              // can inspect 'result' below to see how it works with different settings
-              ReturnValues: "ALL_NEW"
-            };
-            _context.prev = 13;
-            _context.next = 16;
-            return _libs_dynamodb_lib__WEBPACK_IMPORTED_MODULE_3__["call"]("update", params);
-
-          case 16:
-            result = _context.sent;
-            console.log("update.put.result:::", result);
-            console.log("update.put.params.Item:::", params.Item);
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["success"])(params.Item));
-
-          case 22:
-            _context.prev = 22;
-            _context.t0 = _context["catch"](13);
-            return _context.abrupt("return", Object(_libs_response_lib__WEBPACK_IMPORTED_MODULE_4__["failure"])({
-              status: false
-            }));
-
-          case 25:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[13, 22]]);
-  }));
-  return _main.apply(this, arguments);
-}
-
-/***/ }),
-
 /***/ "@babel/runtime/helpers/asyncToGenerator":
 /*!**********************************************************!*\
   !*** external "@babel/runtime/helpers/asyncToGenerator" ***!
@@ -322,4 +289,4 @@ module.exports = require("source-map-support/register");
 /***/ })
 
 /******/ })));
-//# sourceMappingURL=update.js.map
+//# sourceMappingURL=create.js.map
